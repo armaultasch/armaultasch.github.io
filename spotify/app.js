@@ -75,8 +75,8 @@ function getAlbums() {
 		<li>
 		<h3> ${response.artists.items[0].name} </h3>
 		<ul>
-		<li> Photos: <img class="artistPhoto" data-artist-id = "${artistID}" src="${response.artists.items[0].images[0].url}" height="400" width="600"> </li>
-		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		<li> Photos: <img src="${response.artists.items[0].images[0].url}" height="400" width="600"> </li>
+		<button type="button" class="artistPhoto btn btn-primary btn-lg" data-artist-id = "${artistID}" data-toggle="modal" data-target="#myModal">
   See Albums
 </button>
 		</ul>
