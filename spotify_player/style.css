@@ -5,7 +5,9 @@
   overflow: hidden;
   display: block;
 }
-
+.hide {
+  opacity: 0%;
+}
 .header {
   height: 78px;
   background-color: #ccc;

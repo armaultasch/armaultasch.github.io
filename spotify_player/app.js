@@ -1,8 +1,10 @@
 // app.js
 $(document).ready(function (){
-
+	$(".widget").addClass("hide");
 	$(".js-song-form").on("submit", function(event){
+		$(".widget").removeClass("hide");
 		event.preventDefault();
+
 		fetchSong();
 		$(".js-show-artist").on("click", showModal);
 	});
@@ -46,11 +48,11 @@ function getSong(searchTerm) {
 		`;
 		$(".cover").append(getPhoto);
 		var getAudio = `
-		<li>
+		
 		<ul>
 		<audio class="audio" src= "${response.tracks.items[0].preview_url}">
 		</ul>
-		</li>
+		
 		`; $(".js-song-play").append(getAudio);
 		$('.audio').on('timeupdate', printTime);
 
