@@ -1,0 +1,78 @@
+<html>
+<head>
+	<title></title>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+ <script src="app.js"></script>
+</head>
+<body>
+	<form class="js-song-form">
+<div>
+		<label for="song">Song Name</label>
+	<input class="searchbox" type="text" id="song" placeholder="song">
+
+
+	<button type="submit" class="js-song-submit">
+		Search
+	</button>
+</div>
+	</form>
+	<div class="widget">
+		<div class="header">
+		<!-- Try adding/removing these classes: -->
+		<!-- disabled -->
+		<!-- playing -->
+		<div class="btn-play button disabled"></div>
+
+		<div class="metadata">
+			<button class="js-show-artist">
+		  <p class="title"></p>
+		  <p class="author"></p>
+
+		  <div class="seekbar">
+		    <progress id="progressBar" value="0" max="30"></progress>
+		  </div>
+		</div>
+		</div>
+		<div class="cover">
+	
+		</div>
+
+		<div class="js-song-play">
+		</div>
+		<br>
+	</div>
+	<div class="modal fade js-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <!-- Close button -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span>&times;</span>
+        </button>
+
+        <h2 class="js-artist-name">The Beatles</h2>
+      </div>
+
+      <div class="modal-body">
+      	<img src="giphy.gif">
+        <h3>Genres</h3>
+        <ul class="js-artist-genres">
+        	<li>Trap</li>
+        	<li>Atlanta</li>
+        	<li>Hip Hop</li>
+        </ul>
+        <p> Followers:
+        	<strong class="js-artist-followers"></strong>
+        </p>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+	
+	
+</body>
+</html>
