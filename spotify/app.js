@@ -1,124 +1,137 @@
 // app.js
 $(document).ready(function (){
 
-	$(".js-artist-form").on("submit", function(event){
-		event.preventDefault();
-		fetchArtist();
-	});
+	$(".js-artist-form").on("submit", fetchArtists);
 
-	
+	$(".js-artist-list").on("click", ".js-artist-albums", fetchAlbums)
 
 });
 
 
-function fetchArtist(){
-	
+function fetchArtists(event){
+	event.preventDefault();
 		var searchTerm = $(".searchbox").val();
-		getArtists(searchTerm);
+		searchTerm = searchTerm.split(" ").join("+");
+		
 	
-	}
-
-function getArtists(searchTerm) {
+	
 	$.ajax({
 		type: "GET",
 		url: "https://api.spotify.com/v1/search?type=artist&query=" + searchTerm,
-		success: showArtist,
+		success: showArtists,
 		error: handleError
 
 	}); 
+	$(".searchbox").val("");
+	}
+function showArtists(response) {
+		console.log(response);
+		$(".js-artist-list").empty();
+		$(".js-album-list").empty();
+		$(".js-track-list").empty();
+		response.artists.items.forEach(function (artist) {
+			createArtistHtml(artist);
+		});
 	}
 
-function getAlbums() {
-	$(".artistPhoto").on("click", function(event){
-		console.log("sup");
-	var artistID = $(event.currentTarget).data("artist-id");
+
+	function createArtistHtml(artist)  {
+		var image;
+
+		if (artist.images.length > 0){
+			image = artist.images[0].url;
+		} else {
+			image = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQCk2bayZHUJsWeglTeTOvjcX3PvSpnkqU3T-6YmCE6bT1nFQ56Bw";
+		}
+
+		var html = `
+
+		<li class="artist-item">
+		<h4> ${artist.name} </h4>
+		<img class="artist-image" src="${image}">
+
+		<button class="albums-btn js-artist-albums" data-blah="${artist.id}">
+		Show albums for ${artist.name}
+		</button>
+		</li>
+
+		`; $(".js-artist-list").append(html);
+	}
+
+
+function fetchAlbums(event) {
+
+
+	var artistID = $(event.currentTarget).data("blah");
 	
 
 	$.ajax({
 		type: "GET",
 		url: "https://api.spotify.com/v1/artists/" + artistID + "/albums",
-		success: showAlbum,
+		success: showAlbums,
 		error: handleError
 
 	}); 
-	});
+
 	}
 
-	function getTracks() {
-	$(".albumName").on("click", function(event){
-		console.log("sup");
-	var albumID = $(event.currentTarget).data("album-id");
+	function showAlbums (response) {
+
+		console.log(response);
+		$(".js-album-list").empty();
 	
+		response.items.forEach(function (album) {
 
-	$.ajax({
-		type: "GET",
-		url: "https://api.spotify.com/v1/albums/" + albumID + "/tracks",
-		success: showTracks,
-		error: handleError
+			
+			var image;
+			if (album.images.length > 0) {
+				image = album.images[0].url
+			} else {
+				image = "http://static.gigwise.com/artists/03122015_cat_music_science.jpg";
+			}
 
-	}); 
-	});
+			var html = `
+			<li>
+			<h4> ${album.name} </h4>
+			<img class="artist-image" src="${image}">
+			</li>
+
+			`; $(".js-albums-list").append(html);
+			 
+});
 	}
-
-
 	function handleError(err) {
 		console.log("Error", err);
 	}
 
-	function showArtist(response) {
-		console.log(response);
-		$(".js-artist-list").empty();
-		$(".js-album-list").empty();
-		$(".js-track-list").empty();
-		var artistID = (response.artists.items[0].id);
-		var listArtist = `
-		<li>
-		<h3> ${response.artists.items[0].name} </h3>
-		<ul>
-		<li> Photos: <img src="${response.artists.items[0].images[0].url}" height="400" width="600"> </li>
-		<button type="button" class="artistPhoto btn btn-primary btn-lg" data-artist-id = "${artistID}" data-toggle="modal" data-target="#myModal">
-  See Albums
-</button>
-		</ul>
-		</li>
-		`;
-		$(".js-artist-list").html(listArtist);
-		
-		getAlbums();
-	 
-	}
-function showAlbum(response) {
+	// function getTracks() {
+	// $(".albumName").on("click", function(event){
+	// 	console.log("sup");
+	// var albumID = $(event.currentTarget).data("album-id");
+	
 
-		console.log(response);
-		$(".js-album-list").empty();
-		var albumID = (response.items.id);
-		response.items.forEach(function (album) {
+	// $.ajax({
+	// 	type: "GET",
+	// 	url: "https://api.spotify.com/v1/albums/" + albumID + "/tracks",
+	// 	success: showTracks,
+	// 	error: handleError
 
-			
-			var listAlbum = `
-			 <li>
-			 <ul class="albumName" data-album-id = "${album.id}" >
-        <li><h4>Album Name -- <strong> ${album.name} </strong></h4></li>
-       
-        <button type="button" class="btn btn-tracks btn-lg" data-toggle="modal" data-target="#myModal">
-  Tracks
-</button>
-        </ul>
-      </li>
-			`; $(".js-album-list").append(listAlbum);
-		});
-		getTracks();
-		
-	}
+	// }); 
+	// });
+	// }
 
-	function showTracks (response) {
-		console.log(response);
-		$(".js-track-list").empty();
-		response.items.forEach(function (track) {
-			var listTracks = `
-			<li>
-			<h3> ${track.name}</h3>
-			</li>
-			`; $(".js-track-list").append(listTracks);
-		});
-	}
+
+
+	
+
+	// function showTracks (response) {
+	// 	console.log(response);
+	// 	$(".js-track-list").empty();
+	// 	response.items.forEach(function (track) {
+	// 		var listTracks = `
+	// 		<li>
+	// 		<h3> ${track.name}</h3>
+	// 		</li>
+	// 		`; $(".js-track-list").append(listTracks);
+	// 	});
+	// }
