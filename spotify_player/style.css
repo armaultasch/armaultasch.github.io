@@ -14,7 +14,11 @@
   position: relative;
   font-size: 12px;
 }
-
+body { 
+  background: url(music.jpeg) no-repeat; 
+background-position: bottom, top;
+  background-size: cover;
+}
 .btn-play {
   margin: 9px;
   width: 60px;
