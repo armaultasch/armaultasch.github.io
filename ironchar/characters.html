@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> AJAX POST Setup </title>
+  <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <h1> Ironhack Characters </h1>
+
+  <h2> Add a character </h2>
+
+  <form class="js-character-form">
+    <div>
+      <label for="name"> Name </label>
+      <input class="js-name-input" type="text" name="name" placeholder="C-3PO">
+    </div>
+
+    <div>
+      <label for="occupation"> Occupation </label>
+      <input class="js-occupation-input" type="text" name="occupation" placeholder="Protocol Droid">
+    </div>
+
+    <div>
+      <label for="weapon"> Weapon </label>
+      <input class="js-weapon-input" type="text" name="weapon" placeholder="Comic Relief">
+    </div>
+
+    <button type="submit">
+      Create new character
+    </button>
+  </form>
+
+
+  <h2> List of characters </h2>
+
+  <button class="js-fetch-characters">
+    Retrieve list of characters
+  </button>
+
+  <ul class="js-characters-list"></ul>
+</body>
+</html>

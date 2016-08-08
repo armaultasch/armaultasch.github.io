@@ -1,0 +1,26 @@
+/*reporter.css*/
+body:after {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	font-weight: bold;
+	font-size: 300%;
+	color: #fff;
+	background-color: #aaa;
+	content: "Small screens (768px and below)";
+}
+
+@media screen and (min-width: 768px) {
+	body:after {
+	background-color: #666;
+	content: "Medium screens (768px - 1200px)";
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	body:after {
+	background-color: #000;
+	content: "Large screens (1200px and above)";
+	}
+}

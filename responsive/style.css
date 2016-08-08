@@ -1,0 +1,34 @@
+/*style.css*/
+.header-image {
+	background-image: url("cat.gif");
+	background-repeat: no-repeat;
+	height: 250px;
+}
+/*between 768 and 1200 width*/
+
+@media screen and (min-width: 768px){
+	.header-image {
+		background-image: url("dreamer.gif");
+		height: 700px;
+	}
+}
+/*for 1200 and above*/
+
+@media screen and (min-width: 1200px){
+	.header-image {
+		height: 1000px;
+		background-image: url("larger.gif")
+	}
+}
+
+/*.container {
+	margin: 0 40px;
+}
+
+.row {
+	margin-left: -3%;
+}
+
+[class*=*"span"] {
+	display: 
+}*/
