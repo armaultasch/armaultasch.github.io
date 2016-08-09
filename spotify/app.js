@@ -79,6 +79,7 @@ function fetchAlbums(event) {
 
 		console.log(response);
 		$(".js-album-list").empty();
+
 	
 		response.items.forEach(function (album) {
 
